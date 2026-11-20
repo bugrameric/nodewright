@@ -1,0 +1,24 @@
+{
+  "nodes": [
+    { "id": "F1", "label": "Audience: 300 newsletter subscribers", "type": "fact", "x": 70, "y": 70, "status": "done" },
+    { "id": "F2", "label": "3 months of evenings available", "type": "fact", "x": 70, "y": 215, "status": "done", "notes": "About 8 hours per week." },
+    { "id": "D1", "label": "Pick the topic and level", "type": "decision", "x": 370, "y": 140, "status": "doing" },
+    { "id": "D2", "label": "Self-paced videos or live cohort?", "type": "decision", "x": 670, "y": 70 },
+    { "id": "T1", "label": "Survey subscribers about the topic", "type": "task", "x": 670, "y": 215, "status": "todo" },
+    { "id": "T2", "label": "Write the syllabus", "type": "task", "x": 970, "y": 140, "status": "todo" },
+    { "id": "T3", "label": "Record a pilot lesson", "type": "task", "x": 1270, "y": 215, "status": "todo", "budget": 150 },
+    { "id": "R1", "label": "Nobody buys at launch price", "type": "risk", "x": 1270, "y": 70, "riskLevel": "high" },
+    { "id": "R2", "label": "Evening time shrinks", "type": "risk", "x": 1570, "y": 215, "riskLevel": "medium" }
+  ],
+  "edges": [
+    { "from": "F1", "to": "D1" },
+    { "from": "F2", "to": "D1" },
+    { "from": "D1", "to": "D2" },
+    { "from": "D1", "to": "T1" },
+    { "from": "D2", "to": "T2" },
+    { "from": "T1", "to": "T2" },
+    { "from": "T2", "to": "T3" },
+    { "from": "T2", "to": "R1" },
+    { "from": "T3", "to": "R2" }
+  ]
+}
