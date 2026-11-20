@@ -1,70 +1,70 @@
 # Nodewright
 
-**English** · [Türkçe](README.tr.md)
+**Türkçe** · [English](README.en.md)
 
-**Turn a messy problem into a graph that you and your AI agent can both read, edit and reason about.**
+**Dağınık bir problemi, sizin ve yapay zekâ ajanınızın birlikte okuyup düzenleyebildiği bir grafa dönüştürün.**
 
-Nodewright is a single-page canvas for thinking in dependencies. You describe a project, decision or automation idea to an AI agent. The agent answers with a small JSON graph of **facts, decisions, tasks and risks** and the links between them. You paste that graph into Nodewright, see it, rearrange it, mark what is done, add notes, budgets and risk levels, and copy the updated graph back to the agent so it can re-plan with real information.
+Nodewright, bağımlılıklar üzerinden düşünmek için tek sayfalık bir tuvaldir. Bir projeyi, kararı ya da otomasyon fikrini yapay zekâ ajanına anlatırsınız. Ajan size **gerçekler, kararlar, görevler ve riskler** ile aralarındaki bağlantılardan oluşan küçük bir JSON grafı verir. Bu grafı Nodewright'a yapıştırırsınız; görürsünüz, yerlerini değiştirirsiniz, bitenleri işaretlersiniz, not, bütçe ve risk seviyesi eklersiniz. Güncel grafı ajana geri kopyalarsınız ve ajan gerçek bilgiyle yeniden plan yapar.
 
-No build step. No dependencies. No server. Everything runs in your browser.
+Derleme adımı yok. Bağımlılık yok. Sunucu yok. Her şey tarayıcınızda çalışır.
 
-![Nodewright showing a sample graph: facts and decisions on the left, tasks and risks on the right](docs/screenshot.png)
+![Nodewright örnek bir grafı gösteriyor: solda gerçekler ve kararlar, sağda görevler ve riskler](docs/screenshot.png)
 
-The interface comes in **English and Turkish**. It starts in your browser's language and you can switch with the button in the top right (your choice is remembered).
+Arayüz **İngilizce ve Türkçe** gelir. Tarayıcınızın diliyle açılır; sağ üstteki düğmeyle değiştirebilirsiniz (seçiminiz hatırlanır). Ekran görüntüsü İngilizce arayüzü gösterir.
 
-## The loop
+## Döngü
 
 ```
-   you ──(describe a problem)──▶ agent + graph skill
+   siz ──(problemi anlatın)──▶ ajan + graf skill'i
                                       │
-                         JSON graph (nodes + edges)
+                         JSON graf (düğümler + bağlantılar)
                                       ▼
-                  Nodewright: see it, edit it, track status
+                  Nodewright: görün, düzenleyin, durumu izleyin
                                       │
-                      copy the updated graph back
+                      güncel grafı ajana geri kopyalayın
                                       ▼
-   agent explains what changed, where the bottleneck is, what to decide next
+   ajan neyin değiştiğini, darboğazın nerede olduğunu, sıradaki kararı söyler
 ```
 
-1. Tell your agent: *"Use the `graph-problem-solver` skill and map out my problem: …"* (see [the skill](#the-skill)).
-2. The agent replies with a `json` code block.
-3. In Nodewright click **Import JSON** and paste the *whole* reply. Nodewright finds the JSON inside the text, validates it and shows readable errors if something is wrong.
-4. Work on the canvas: drag nodes, connect them, set status, add notes.
-5. Click **Send to AI (copy)** and paste the updated graph back to the agent.
+1. Ajanınıza şunu söyleyin: *"`graph-problem-solver` skill'ini kullan ve problemimi haritala: …"* ([skill](#skill) bölümüne bakın).
+2. Ajan bir `json` kod bloğuyla yanıt verir.
+3. Nodewright'ta **JSON içe aktar** düğmesine basın ve yanıtın *tamamını* yapıştırın. Nodewright JSON'u metnin içinden bulur, doğrular ve sorun varsa anlaşılır hatalar gösterir.
+4. Tuvalde çalışın: düğümleri sürükleyin, bağlayın, durum verin, not ekleyin.
+5. **AI'ya gönder (kopyala)** düğmesine basın ve güncel grafı ajana yapıştırın.
 
-If your agent does not have the skill installed, click **Copy prompt for AI**: it copies a ready-made prompt with the schema and your current graph.
+Ajanınızda skill kurulu değilse **AI için istemi kopyala** düğmesine basın: şema ve mevcut grafınızla birlikte hazır bir istem kopyalanır.
 
-## Features
+## Özellikler
 
-- Four node types: `fact`, `decision`, `task`, `risk`; edges mean "depends on / leads to".
-- Status per node: `todo`, `doing`, `done`. A node shows a **Ready** badge when every node it depends on is `done`.
-- Per-node notes, budget and risk level (`low`, `medium`, `high`, `critical`).
-- Select a node to highlight its whole upstream and downstream chain and dim the rest.
-- Automatic layout by dependency order, with cycle detection.
-- Search and filter by node type.
-- Pan, zoom (wheel), fit to screen, light and dark theme.
-- English and Turkish interface (the copied AI prompt follows the interface language).
-- Autosave in your browser's `localStorage`; JSON import and download.
-- Extra fields in your JSON are preserved, so an agent can attach its own metadata.
-- Keyboard: `Delete` removes the selection, `Esc` clears it.
+- Dört düğüm türü: `fact` (gerçek), `decision` (karar), `task` (görev), `risk`; bağlantı "buna bağlıdır / buna götürür" demektir.
+- Düğüm başına durum: `todo`, `doing`, `done`. Bağlı olduğu tüm düğümler `done` olunca düğümde **Hazır** rozeti çıkar.
+- Düğüm başına not, bütçe ve risk seviyesi (`low`, `medium`, `high`, `critical`).
+- Bir düğümü seçince onun öncül ve ardıl zincirinin tamamı vurgulanır, gerisi soluklaşır.
+- Bağımlılık sırasına göre otomatik yerleşim; döngü algılama.
+- Arama ve türe göre süzme.
+- Kaydırma, tekerlekle yakınlaştırma, ekrana sığdırma, açık ve koyu tema.
+- İngilizce ve Türkçe arayüz (kopyalanan AI istemi de arayüz diline uyar).
+- Tarayıcının `localStorage` alanında otomatik kayıt; JSON içe aktarma ve indirme.
+- JSON'daki ek alanlar korunur; ajan kendi üst verisini ekleyebilir.
+- Klavye: `Delete` seçileni siler, `Esc` seçimi kaldırır.
 
-## Run it
+## Çalıştırma
 
-Open `index.html` in any modern browser. That is all.
+`index.html` dosyasını herhangi bir güncel tarayıcıda açın. Bu kadar.
 
-If you prefer a local server: `python -m http.server` in this folder, then open `http://localhost:8000`.
+Yerel sunucu isterseniz bu klasörde `python -m http.server` çalıştırıp `http://localhost:8000` adresini açın.
 
-Try the bundled example: **More → Sample graph** loads a tiny sample, or import [`examples/launch-an-online-course.json`](examples/launch-an-online-course.json).
+Hazır örneği deneyin: **Diğer → Örnek graf** küçük bir örnek yükler. Ya da [`examples/launch-an-online-course.json`](examples/launch-an-online-course.json) dosyasını içe aktarın (İngilizce bir online kurs örneği).
 
-## Graph format
+## Graf biçimi
 
 ```json
 {
   "nodes": [
-    { "id": "F1", "label": "Verified fact",   "type": "fact",     "x": 100, "y": 100 },
-    { "id": "D1", "label": "Decision to make", "type": "decision", "x": 380, "y": 100 },
-    { "id": "T1", "label": "Next task",        "type": "task",     "x": 660, "y": 100, "status": "todo" },
-    { "id": "R1", "label": "Important risk",   "type": "risk",     "x": 660, "y": 260, "riskLevel": "high" }
+    { "id": "F1", "label": "Doğrulanmış gerçek", "type": "fact",     "x": 100, "y": 100 },
+    { "id": "D1", "label": "Verilecek karar",    "type": "decision", "x": 380, "y": 100 },
+    { "id": "T1", "label": "Sonraki iş",         "type": "task",     "x": 660, "y": 100, "status": "todo" },
+    { "id": "R1", "label": "Önemli risk",        "type": "risk",     "x": 660, "y": 260, "riskLevel": "high" }
   ],
   "edges": [
     { "from": "F1", "to": "D1" },
@@ -74,45 +74,47 @@ Try the bundled example: **More → Sample graph** loads a tiny sample, or impor
 }
 ```
 
-| Field | Required | Values |
+| Alan | Zorunlu | Değerler |
 |---|---|---|
-| `nodes[].id` | yes | unique, non-empty string |
-| `nodes[].label` | yes | string |
-| `nodes[].type` | yes | `fact`, `decision`, `task`, `risk` |
-| `nodes[].status` | no | `todo`, `doing`, `done` |
-| `nodes[].x`, `nodes[].y` | no | finite numbers; missing positions are filled in automatically |
-| `nodes[].notes`, `budget`, `riskLevel` | no | free text, number, `low`/`medium`/`high`/`critical` |
-| `edges[].from`, `edges[].to` | yes | ids of existing nodes |
+| `nodes[].id` | evet | benzersiz, boş olmayan metin |
+| `nodes[].label` | evet | metin |
+| `nodes[].type` | evet | `fact`, `decision`, `task`, `risk` |
+| `nodes[].status` | hayır | `todo`, `doing`, `done` |
+| `nodes[].x`, `nodes[].y` | hayır | sonlu sayılar; eksik konumlar otomatik doldurulur |
+| `nodes[].notes`, `budget`, `riskLevel` | hayır | serbest metin, sayı, `low`/`medium`/`high`/`critical` |
+| `edges[].from`, `edges[].to` | evet | var olan düğümlerin kimlikleri |
 
-## The skill
+Alan adları ve değerler (`fact`, `todo`, `high` …) arayüz Türkçe olsa da İngilizce kalır; böylece her ajan aynı biçimi üretir.
 
-The [`skills/`](skills) folder contains the `graph-problem-solver` agent skill that teaches an agent to produce and update graphs in this format, to keep verified facts separate from assumptions, and to continue the conversation when you send an edited graph back.
+## Skill
 
-- English: [`skills/en/graph-problem-solver/SKILL.md`](skills/en/graph-problem-solver/SKILL.md)
-- Turkish (original): [`skills/tr/graph-problem-solver/SKILL.md`](skills/tr/graph-problem-solver/SKILL.md)
+[`skills/`](skills) klasörü, ajana bu biçimde graf üretmeyi ve güncellemeyi, doğrulanmış bilgiyle varsayımı ayrı tutmayı, düzenlenmiş grafı geri gönderdiğinizde sohbete devam etmeyi öğreten `graph-problem-solver` ajan skill'ini içerir.
 
-Install **one** of them by copying its folder into your agent's skills directory, for example `~/.claude/skills/` for Claude Code or `~/.codex/skills/` for Codex CLI.
+- İngilizce: [`skills/en/graph-problem-solver/SKILL.md`](skills/en/graph-problem-solver/SKILL.md)
+- Türkçe (özgün): [`skills/tr/graph-problem-solver/SKILL.md`](skills/tr/graph-problem-solver/SKILL.md)
 
-## Privacy
+İkisinden **birini** seçin ve klasörünü ajanınızın skill dizinine kopyalayın; örneğin Claude Code için `~/.claude/skills/`, Codex CLI için `~/.codex/skills/`.
 
-Nodewright makes no network requests. Your graph lives in your browser's `localStorage` and in the JSON you copy or download yourself.
+## Gizlilik
 
-## Adding a language
+Nodewright hiçbir ağ isteği yapmaz. Grafınız tarayıcınızın `localStorage` alanında ve sizin kopyaladığınız ya da indirdiğiniz JSON'da durur.
 
-All interface text lives in [`i18n.js`](i18n.js). Copy the `en` object, translate the values, add it to the returned object and to `LANGS`, and the language button will cycle through it (the button currently toggles between two languages, so for a third one change the `lang` click handler in `app.js` to cycle through `LANGS`).
+## Dil ekleme
 
-## Project layout
+Tüm arayüz metinleri [`i18n.js`](i18n.js) dosyasındadır. `en` nesnesini kopyalayın, değerleri çevirin, döndürülen nesneye ve `LANGS` listesine ekleyin. Dil düğmesi şu an iki dil arasında geçiş yapar; üçüncü dil için `app.js` içindeki `lang` tıklama işleyicisini `LANGS` üzerinde dönecek şekilde değiştirin.
+
+## Proje yapısı
 
 ```
-index.html   the page
-app.js       all behaviour (vanilla JavaScript, one file)
-i18n.js      interface texts (English, Turkish)
-styles.css   styling (light and dark)
-examples/    sample graphs
-skills/      the agent skill (English and Turkish)
-docs/        screenshot
+index.html   sayfa
+app.js       tüm davranış (sade JavaScript, tek dosya)
+i18n.js      arayüz metinleri (İngilizce, Türkçe)
+styles.css   görünüm (açık ve koyu)
+examples/    örnek graflar
+skills/      ajan skill'i (İngilizce ve Türkçe)
+docs/        ekran görüntüsü
 ```
 
-## License
+## Lisans
 
-MIT, see [LICENSE](LICENSE).
+MIT, bkz. [LICENSE](LICENSE).
